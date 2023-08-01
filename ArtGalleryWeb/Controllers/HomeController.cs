@@ -1,8 +1,8 @@
-﻿using ArtGalleryWeb.Models;
+﻿using ArtGallery.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace ArtGalleryWeb.Controllers
+namespace ArtGallery.DataAcess.Controllers
 {
     public class HomeController : Controller
     {

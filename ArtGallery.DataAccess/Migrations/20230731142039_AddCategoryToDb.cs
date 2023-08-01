@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ArtGalleryWeb.Migrations
+namespace ArtGallery.DataAcess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryToDb : Migration

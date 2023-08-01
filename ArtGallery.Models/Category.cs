@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace ArtGalleryWeb.Models
+namespace ArtGallery.Models
 {
     public class Category
     {
@@ -12,7 +12,7 @@ namespace ArtGalleryWeb.Models
         [DisplayName("Category Name")]
         public string Name { get; set; }
         [DisplayName("Display Order")]
-        [Range(1,10, ErrorMessage="Display Order must be between 1-10")]
+        [Range(1, 10, ErrorMessage = "Display Order must be between 1-10")]
         public int DisplayOrder { get; set; }
     }
 }

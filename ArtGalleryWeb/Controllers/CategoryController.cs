@@ -1,9 +1,8 @@
-﻿using ArtGalleryWeb.Data;
-using ArtGalleryWeb.Models;
+﻿using ArtGallery.DataAcess.Data;
+using ArtGallery.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace ArtGalleryWeb.Controllers
+namespace ArtGallery.DataAcess.Controllers
 {
     public class CategoryController : Controller
     {

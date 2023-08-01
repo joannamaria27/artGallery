@@ -1,4 +1,4 @@
-using ArtGalleryWeb.Data;
+using ArtGallery.DataAcess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

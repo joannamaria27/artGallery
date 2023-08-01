@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGalleryWeb", "ArtGalleryWeb\ArtGalleryWeb.csproj", "{60B02C16-BE31-4B11-907C-096C754926E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtGalleryWeb", "ArtGalleryWeb\ArtGalleryWeb.csproj", "{60B02C16-BE31-4B11-907C-096C754926E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery.DataAcess", "ArtGallery.DataAccess\ArtGallery.DataAcess.csproj", "{BC06E63F-6707-45C7-9D41-52502A7B9507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery.Models", "ArtGallery.Models\ArtGallery.Models.csproj", "{73FB581C-419C-4868-B79C-CDB3B87208F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery.Utility", "ArtGallery.Utility\ArtGallery.Utility.csproj", "{090721A0-A56C-4767-9826-93EE751567B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{60B02C16-BE31-4B11-907C-096C754926E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60B02C16-BE31-4B11-907C-096C754926E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60B02C16-BE31-4B11-907C-096C754926E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC06E63F-6707-45C7-9D41-52502A7B9507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC06E63F-6707-45C7-9D41-52502A7B9507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC06E63F-6707-45C7-9D41-52502A7B9507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC06E63F-6707-45C7-9D41-52502A7B9507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73FB581C-419C-4868-B79C-CDB3B87208F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73FB581C-419C-4868-B79C-CDB3B87208F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73FB581C-419C-4868-B79C-CDB3B87208F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73FB581C-419C-4868-B79C-CDB3B87208F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{090721A0-A56C-4767-9826-93EE751567B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{090721A0-A56C-4767-9826-93EE751567B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{090721A0-A56C-4767-9826-93EE751567B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090721A0-A56C-4767-9826-93EE751567B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

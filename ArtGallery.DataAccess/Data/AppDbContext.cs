@@ -1,7 +1,7 @@
-﻿using ArtGalleryWeb.Models;
+﻿using ArtGallery.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ArtGalleryWeb.Data
+namespace ArtGallery.DataAcess.Data
 {
     public class AppDbContext : DbContext
     {
