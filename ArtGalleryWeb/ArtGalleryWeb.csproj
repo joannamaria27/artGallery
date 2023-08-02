@@ -21,4 +21,8 @@
     <ProjectReference Include="..\ArtGallery.Models\ArtGallery.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
