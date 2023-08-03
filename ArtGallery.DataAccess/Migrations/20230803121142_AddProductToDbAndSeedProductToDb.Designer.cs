@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGallery.DataAcess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230803104953_AddProductsToDBAndSeedProductToDb")]
-    partial class AddProductsToDBAndSeedProductToDb
+    [Migration("20230803121142_AddProductToDbAndSeedProductToDb")]
+    partial class AddProductToDbAndSeedProductToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

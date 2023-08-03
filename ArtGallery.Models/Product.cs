@@ -28,6 +28,7 @@ namespace ArtGallery.Models
         public int StockQuantity { get; set; }
         [Required]
         [DisplayName("Created date")]
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
 
     }

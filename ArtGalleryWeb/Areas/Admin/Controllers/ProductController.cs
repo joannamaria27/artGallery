@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ArtGallery.DataAcess.Repository.IRepository;
 
 namespace ArtGalleryWeb.Areas.Admin.Controllers
-{ 
+{
     [Area("Admin")]
     public class ProductController : Controller
     {
@@ -29,10 +29,17 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _productRepository.Add(obj);
-                _productRepository.Save();
-                TempData["success"] = "Product created successfully";
-                return RedirectToAction("Index");
+                if (obj.CreatedDate <= DateTime.Now)
+                {
+                    _productRepository.Add(obj);
+                    _productRepository.Save();
+                    TempData["success"] = "Product created successfully";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("CreatedDate", "Created date must be today or in the past");
+                }
             }
             return View();
         }
@@ -54,12 +61,16 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Product obj)
         {
-            if (ModelState.IsValid)
+            if (obj.CreatedDate <= DateTime.Now)
             {
                 _productRepository.Update(obj);
                 _productRepository.Save();
                 TempData["success"] = "Product edited successfully";
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("CreatedDate", "Created date must be today or in the past");
             }
             return View();
         }
