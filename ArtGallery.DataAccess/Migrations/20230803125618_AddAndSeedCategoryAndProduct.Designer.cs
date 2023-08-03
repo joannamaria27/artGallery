@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGallery.DataAcess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230803121142_AddProductToDbAndSeedProductToDb")]
-    partial class AddProductToDbAndSeedProductToDb
+    [Migration("20230803125618_AddAndSeedCategoryAndProduct")]
+    partial class AddAndSeedCategoryAndProduct
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,6 +84,9 @@ namespace ArtGallery.DataAcess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -103,6 +106,8 @@ namespace ArtGallery.DataAcess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
 
                     b.HasData(
@@ -110,6 +115,7 @@ namespace ArtGallery.DataAcess.Migrations
                         {
                             Id = 1,
                             Author = "Al B.",
+                            CategoryId = 2,
                             CreatedDate = new DateTime(2020, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "My oil painting of a landscape with my house. Size 2x1m.",
                             Price = 2345,
@@ -120,12 +126,24 @@ namespace ArtGallery.DataAcess.Migrations
                         {
                             Id = 2,
                             Author = "Tom Nowak",
+                            CategoryId = 4,
                             CreatedDate = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "My biography. 245 pages.",
+                            Description = "My biography. 74 photos.",
                             Price = 55,
                             StockQuantity = 10000,
                             Title = "Biography"
                         });
+                });
+
+            modelBuilder.Entity("ArtGallery.Models.Product", b =>
+                {
+                    b.HasOne("ArtGallery.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

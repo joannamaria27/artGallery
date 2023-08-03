@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ArtGallery.DataAcess.Migrations
 {
     /// <inheritdoc />
-    public partial class AddProductToDbAndSeedProductToDb : Migration
+    public partial class AddAndSeedCategoryAndProduct : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,11 +38,18 @@ namespace ArtGallery.DataAcess.Migrations
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
                     StockQuantity = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -58,22 +65,27 @@ namespace ArtGallery.DataAcess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Author", "CreatedDate", "Description", "Price", "StockQuantity", "Title" },
+                columns: new[] { "Id", "Author", "CategoryId", "CreatedDate", "Description", "Price", "StockQuantity", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Al B.", new DateTime(2020, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "My oil painting of a landscape with my house. Size 2x1m.", 2345, 1, "Dream" },
-                    { 2, "Tom Nowak", new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "My biography. 245 pages.", 55, 10000, "Biography" }
+                    { 1, "Al B.", 2, new DateTime(2020, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "My oil painting of a landscape with my house. Size 2x1m.", 2345, 1, "Dream" },
+                    { 2, "Tom Nowak", 4, new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "My biography. 74 photos.", 55, 10000, "Biography" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Categories");
         }
     }
 }
