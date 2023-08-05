@@ -28,6 +28,11 @@
             <span asp-validation-for="CreatedDate" class="text-danger"></span>
         </div>
         <div class="mb-3 row">
+            <label asp-for="ImageUrl" class="p-0"></label>
+            <input asp-for="ImageUrl" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row">
             <label asp-for="StockQuantity" class="p-0"></label>
             <input asp-for="StockQuantity" class="form-control" />
             <span asp-validation-for="StockQuantity" class="text-danger"></span>
@@ -36,6 +41,13 @@
             <label asp-for="Price" class="p-0"></label>
             <input asp-for="Price" class="form-control" />
             <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="CategoryId" class="p-0"></label>
+            <select asp-for="CategoryId" asp-items="ViewBag.SelectListItems" class="form-select">
+                <option disabled selected>--Select Category--</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
