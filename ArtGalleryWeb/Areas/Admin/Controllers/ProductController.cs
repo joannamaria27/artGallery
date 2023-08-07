@@ -22,7 +22,7 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> objProductList = _productRepository.GetAll().ToList();
+            List<Product> objProductList = _productRepository.GetAll(includePropertis: "Category").ToList();
             return View(objProductList);
         }
 
