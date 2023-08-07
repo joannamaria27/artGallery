@@ -13,10 +13,12 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
-        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -50,12 +52,32 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductViewModel productVM/*, IFormFile files*/)
+        public IActionResult Upsert(ProductViewModel productVM, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
                 if (productVM.Product.CreatedDate <= DateTime.Now)
                 {
+                    string wwwRootPath = _webHostEnvironment.WebRootPath;
+                    if (file != null)
+                    {
+                        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                        string productPath = Path.Combine(wwwRootPath, @"images\product");
+                        if(!string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                        {
+                            var oldImagePath= Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
+                            if(System.IO.File.Exists(oldImagePath))
+                            {
+                                System.IO.File.Delete(oldImagePath);
+                            }
+                        }
+                        using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                        {
+                            file.CopyTo(fileStream);
+                        }
+                        productVM.Product.ImageUrl = @"\images\product\" + fileName;
+                    }
+
                     if (productVM.Product.Id != 0)
                     {
                         _productRepository.Update(productVM.Product);
