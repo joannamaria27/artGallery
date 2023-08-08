@@ -63,10 +63,10 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
                     {
                         string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                         string productPath = Path.Combine(wwwRootPath, @"images\product");
-                        if(!string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                        if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
                         {
-                            var oldImagePath= Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
-                            if(System.IO.File.Exists(oldImagePath))
+                            var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
+                            if (System.IO.File.Exists(oldImagePath))
                             {
                                 System.IO.File.Delete(oldImagePath);
                             }
@@ -96,7 +96,7 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("CreatedDate", "Created date must be today or in the past");
-                   return View(productVM);
+                    return View(productVM);
                 }
             }
             else
@@ -108,7 +108,7 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
                 });
                 return View(productVM);
             }
-            
+
         }
 
         public IActionResult Delete(int? id)
@@ -121,6 +121,15 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
             if (productFromDb == null)
             {
                 return NotFound();
+            }
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            if (!string.IsNullOrEmpty(productFromDb.ImageUrl))
+            {
+                var oldImagePath = Path.Combine(wwwRootPath, productFromDb.ImageUrl.TrimStart('\\'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
             }
             return View(productFromDb);
         }
@@ -137,5 +146,21 @@ namespace ArtGalleryWeb.Areas.Admin.Controllers
             TempData["success"] = "Product deleted successfully";
             return RedirectToAction("Index");
         }
+
+
+
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Product> objProductList = _productRepository.GetAll(includePropertis: "Category").ToList();
+            return Json(new { data = objProductList });
+        }
+        #endregion
+
+
+
     }
+
 }

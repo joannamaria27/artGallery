@@ -18,7 +18,7 @@ namespace ArtGallery.DataAcess.Repository
         {
             _context = context;
             this.dbSet = _context.Set<T>();
-            _context.Products.Include(u => u.Category).Include(u=>u.CategoryId);
+            _context.Products.Include(u => u.Category).Include(u => u.CategoryId);
         }
         public void Add(T entity)
         {
@@ -40,9 +40,9 @@ namespace ArtGallery.DataAcess.Repository
         public IEnumerable<T> GetAll(string? includePropertis = null)
         {
             IQueryable<T> query = dbSet;
-            if(!string.IsNullOrEmpty(includePropertis))
+            if (!string.IsNullOrEmpty(includePropertis))
             {
-                foreach(var propertis in includePropertis.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+                foreach (var propertis in includePropertis.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(propertis);
                 }
@@ -51,7 +51,7 @@ namespace ArtGallery.DataAcess.Repository
         }
         public void Remove(T entity)
         {
-           dbSet.Remove(entity);
+            dbSet.Remove(entity);
         }
         public void RemoveRange(IEnumerable<T> entitie)
         {
