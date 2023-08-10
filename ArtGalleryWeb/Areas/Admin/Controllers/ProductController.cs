@@ -5,10 +5,14 @@ using ArtGallery.DataAcess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ArtGallery.Models.ViewModels;
 using System.Collections.Generic;
+using ArtGallery.Utility;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ArtGalleryWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepository;

@@ -2,10 +2,13 @@
 using ArtGallery.Models;
 using Microsoft.AspNetCore.Mvc;
 using ArtGallery.DataAcess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
+using ArtGallery.Utility;
 
 namespace ArtGalleryWeb.Areas.Admin.Controllers
 { 
     [Area("Admin")]
+    [Authorize(Roles =SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
