@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ArtGallery.DataAccess\ArtGallery.DataAcess.csproj" />
     <ProjectReference Include="..\ArtGallery.Models\ArtGallery.Models.csproj" />
+    <ProjectReference Include="..\ArtGallery.Utility\ArtGallery.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>
