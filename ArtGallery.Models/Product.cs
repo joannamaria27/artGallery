@@ -25,7 +25,7 @@ namespace ArtGallery.Models
         [Range(1, int.MaxValue)]
         public int Price { get; set; }
         [Required]
-        [DisplayName("Number of pieces created")]
+        [DisplayName("Number of copies available")]
         [Range(1, 1000000, ErrorMessage = "Stock Quantity must be between 1-1000000")]
         public int StockQuantity { get; set; }
         [Required]
