@@ -122,7 +122,7 @@ namespace ArtGalleryWeb.Areas.Identity.Pages.Account
             Input = new InputModel()
             {
 
-                RoleList = _roleManager.Roles.Where(role => role.Name != "Admin").Select(x => x.Name).Select(i => new SelectListItem
+                RoleList = _roleManager.Roles/*.Where(role => role.Name != "Admin")*/.Select(x => x.Name).Select(i => new SelectListItem
                 {
                     Text = i,
                     Value = i
