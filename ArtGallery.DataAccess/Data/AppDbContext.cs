@@ -13,10 +13,15 @@ namespace ArtGallery.DataAcess.Data
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Company>().HasData(
+                new Company { Id = 1, Name = "PhotoDesign", PhoneNumber = "123123123", StreetAddress = "Biala 2", City = "Bialystok", PostalCode = "22-223", Region = "podlaskie" },
+                new Company { Id = 2, Name = "ArtTech", PhoneNumber = "333444555", StreetAddress = "Warszawska 44", City = "Warszawa", PostalCode = "02-123", Region = "mazowieckie" }
+                );
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Sculpture", DisplayOrder = 7 },
                 new Category { Id = 2, Name = "Painting", DisplayOrder = 1 },
@@ -35,7 +40,7 @@ namespace ArtGallery.DataAcess.Data
                   Price = 2345,
                   StockQuantity = 1,
                   CategoryId = 2,
-                  ImageUrl=""
+                  ImageUrl = ""
 
               },
               new Product
@@ -48,7 +53,7 @@ namespace ArtGallery.DataAcess.Data
                   Price = 55,
                   StockQuantity = 10000,
                   CategoryId = 4,
-                  ImageUrl=""
+                  ImageUrl = ""
               }
               );
         }
